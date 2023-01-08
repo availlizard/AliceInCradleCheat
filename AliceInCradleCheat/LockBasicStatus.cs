@@ -1,7 +1,6 @@
 ﻿using BepInEx.Configuration;
 using HarmonyLib;
 using nel;
-using m2d;
 
 namespace AliceInCradleCheat
 {

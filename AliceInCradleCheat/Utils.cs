@@ -115,7 +115,7 @@ namespace AliceInCradleCheat
         }
 
         [HarmonyPostfix, HarmonyPatch(typeof(PRNoel), "newGame")]
-        static void PatchContent()
+        private static void PatchContent()
         {
             FetchNoel();
         }
@@ -167,7 +167,7 @@ namespace AliceInCradleCheat
         public string Loc_name(string lang = "")
         {
             int i = GetLangIndex(lang);
-            return i == 0 && loc_name_array[0] == "" ? name : loc_name_array[i];
+            return loc_name_array[i] == "" ? name : loc_name_array[i];
         }
     }
     public class LocConfigSection : BaseLocClass

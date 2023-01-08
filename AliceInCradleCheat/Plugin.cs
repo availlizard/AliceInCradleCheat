@@ -2,6 +2,7 @@
 using BepInEx;
 using BepInEx.Configuration;
 using BepInEx.Logging;
+using m2d;
 
 namespace AliceInCradleCheat
 {
@@ -29,12 +30,12 @@ namespace AliceInCradleCheat
             _ = new AddCustomText();
 
             _ = new LockStatus();
+            _ = new SuperNoel();
             _ = new SetGameValue();
-            _ = new DamageMultiplier();
-            _ = new EnvironmentDamage();
             _ = new RestrictionLift();
             _ = new NonHModeEnhance();
             _ = new PervertFuncs();
+            _ = new SpecialItemEffect();
             _ = new AdditionalDrop();
             _ = new OtherFuncs();
             cheat_logger.LogInfo($"Plugin {PluginInfo.PLUGIN_GUID} is loaded!");

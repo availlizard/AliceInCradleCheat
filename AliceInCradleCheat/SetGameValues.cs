@@ -72,53 +72,45 @@ namespace AliceInCradleCheat
         private static void SetDangerLevel()
         {
             NightController nc = m2d.NightCon;
+            if (nc.M2D.isSafeArea()) { return; }
             int dlevel = Traverse.Create(nc).Field("dlevel").GetValue<int>();
             int dlevel_add = Traverse.Create(nc).Field("dlevel_add").GetValue<int>();
             int new_dlevel = danger_level_def.Value;
             int diff_level = new_dlevel - dlevel - dlevel_add;
-
-            if (diff_level != 0 )
+            if (diff_level == 0) { return; }
+            if (diff_level > 0)
             {
-                if (diff_level > 0)
+                Traverse.Create(nc).Field("dlevel").SetValue(new_dlevel);
+            } else if (diff_level < 0)
+            {
+                // Reduce additional danger level first
+                if (new_dlevel >= dlevel)
                 {
-                    m2d.NightCon.addAdditionalDangerLevel(diff_level, true);
+                    m2d.NightCon.addAdditionalDangerLevel(diff_level, false);
                 }
-                else if (diff_level < 0)
+                else
                 {
-                    if (new_dlevel >= dlevel)
-                    {
-                        m2d.NightCon.addAdditionalDangerLevel(diff_level, false);
-                    }
-                    else
-                    {
-                        if (dlevel_add != 0)
-                        {
-                            m2d.NightCon.addAdditionalDangerLevel(-dlevel_add, false);
-                        }
-                        Traverse.Create(nc).Field("dlevel").SetValue(new_dlevel);
-                    }
+                    m2d.NightCon.addAdditionalDangerLevel(-dlevel_add, false);
+                    Traverse.Create(nc).Field("dlevel").SetValue(new_dlevel);
                 }
-                // change day night stage immediately
-                nc.changeTo(nc.dLevelToNightLevel(new_dlevel), 0);
             }
+            nc.showNightLevelAdditionUI();
         }
         private static void SetWeather()
         {
             NightController nc = m2d.NightCon;
             string weather_string = weather_def.Value;
-            char[] weather_bit = weather_string.ToCharArray();
             WeatherItem.WEATHER[] available_weather = (WeatherItem.WEATHER[])Enum.GetValues(typeof(WeatherItem.WEATHER));
             List<WeatherItem.WEATHER> add_weather_list = new();
-            for (int i = 0; i < weather_bit.Length && i < available_weather.Length - 1; i++)
+            for (int i = 0; i < weather_string.Length && i < available_weather.Length - 1; i++)
             {
-                if (weather_bit[i] == '1')
+                if (int.TryParse(weather_string[i].ToString(), out int num))
                 {
-                    add_weather_list.Add(available_weather[i]);
+                    for (int j = 0; j < num; j++)
+                    {
+                        add_weather_list.Add(available_weather[i]);
+                    }
                 }
-            }
-            foreach (WeatherItem.WEATHER i in add_weather_list)
-            {
-                AICCheat.cheat_logger.LogWarning($"{i}");
             }
             // destruction of old weathers
             WeatherItem[] AWeather = Traverse.Create(nc).Field("AWeather").GetValue<WeatherItem[]>();

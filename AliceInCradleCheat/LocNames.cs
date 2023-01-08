@@ -89,6 +89,24 @@ namespace AliceInCradleCheat
                 "MP", "", "MP",
                 "ResetMPBreak", "", "修复MP碎裂",
             }),
+            new LocConfigSection("SuperNeol", new string[] {"", "超级诺艾尔"}, new string[] {
+                "HPDamageMultiplier", "", "HP伤害倍数",
+                "MPDamageMultiplier", "", "MP伤害倍数",
+                "InvincibleToMonsters", "", "魔物攻击无效",
+                "InfiniteJump", "", "无限跳跃",
+                "InfiniteGroundBomb", "InfiniteGroundBomb", "无限地面炸弹",
+                "DuralableShield", "", "耐久护盾",
+                "DisableGasDamage", "", "水中及毒气中无限氧气，无视虫墙",
+                "ImmuneToMapThorn", "", "免疫地图尖刺",
+                "ImmuneToLava", "ImmuneToAcid", "免疫酸液",
+            }),
+            new LocConfigSection("RestrictionLift", new string[] {"", "限制解除"}, new string[] {
+                "FastTravel", "", "快速旅行",
+                "StorageAccess", "", "仓库使用",
+                    "desc_StorageAccess", "Wheel page won't show", "转轮页面将无法显示",
+                "ItemUsage", "", "物品使用",
+                    "desc_ItemUsage", "Enable item usage while taking damage", "正在受到伤害时也能使用物品",
+            }),
             new LocConfigSection("SetGameValues", new string[] {"", "设定数值"}, new string[] {
                 "SetMoneyButton", "", "设定钱",
                 "Money", "", "钱",
@@ -96,28 +114,11 @@ namespace AliceInCradleCheat
                 "DangerLevel", "", "危险度",
                 "SetWeatherButton", "", "设定天气",
                 "Weather", "", "天气",
-                    "desc_Weather", "Use a sequence of '1' or '0' to represent the presence of certain weather, " +
+                    "desc_Weather", "Use a sequence of '0' to '9' to represent the number of certain weather, " +
                         "in the order of 'Normal', 'Whirlwind', 'Thunder', 'Fog', 'Drought', 'Heavy Fog', 'Plague', " +
-                        "'Heavy Fog', 'Plague'. Note, conflicted weathers won't show together.", "使用包含0和1的序列" +
-                        "表示特定天气是否出现，按顺序分别为‘通常’、‘旋风’、‘雷暴’、‘雾天’、‘干旱’、‘浓雾’" +
+                        "'Heavy Fog', 'Plague'. Note, conflicted weathers won't show together.", "使用包含0-9的序列" +
+                        "表示特定天气出现的次数，按顺序分别为‘通常’、‘旋风’、‘雷暴’、‘雾天’、‘干旱’、‘浓雾’" +
                         "和‘瘟疫’。注意，冲突天气不会同时出现。",
-            }),
-            new LocConfigSection("DamageEnhance", new string[] {"", "伤害增强"}, new string[] {
-                "HPDamageMultiplier", "", "HP伤害倍数",
-                "MPDamageMultiplier", "", "MP伤害倍数",
-            }),
-            new LocConfigSection("EnvironmentDamage", new string[] {"", "环境伤害"}, new string[] {
-                "DisableGasDamage", "", "水中及毒气中无限氧气，无视虫墙",
-                "ImmuneToMapThorn", "", "免疫地图尖刺",
-                "ImmuneToLava", "ImmuneToAcid", "免疫酸液",
-            }),
-            new LocConfigSection("RestrictionLift", new string[] {"", "限制解除"}, new string[] {
-                "InfiniteJump", "", "无限跳跃",
-                "FastTravel", "", "快速旅行",
-                "StorageAccess", "", "仓库使用",
-                    "desc_StorageAccess", "Wheel page won't show", "转轮页面将无法显示",
-                "ItemUsage", "", "物品使用",
-                    "desc_ItemUsage", "Enable item usage while taking damage", "正在受到伤害时也能使用物品",
             }),
             new LocConfigSection("NonHModeEnhance", new string[] { "HideMoreSexualContent", "健全模式增强"}, new string[] {
                 "ResetHExp", "", "重置经历",
@@ -141,6 +142,8 @@ namespace AliceInCradleCheat
                 "PlantEggs", "", "一键六色条",
                 "LayEggs", "", "一键排出",
                 "EroBow", "EphrodisiacBeamOnly", "人偶弩只发射紫射线",
+                "EpItemEffect", "ForbiddenFruitEnhance", "禁忌的苹果加强",
+                    "desc_EpItemEffect", "Forbidden fruit now add frustrated condition when EP >= 700", "禁忌的苹果会在EP>=700时添加欲火中烧状态",
             }),
             new LocConfigSection("GenerateItemWhenDrop", new string[] {"", "丢弃物品时生成额外物品"}, new string[] {
                 "ItemName", "", "物品名称",
@@ -179,17 +182,14 @@ namespace AliceInCradleCheat
         }
         public static string GetSectionLocName(string section, string lang = "")
         {
-            try
+            if (config_loc_dict.ContainsKey(section))
             {
                 string loc = GetSection(section).Loc_name(lang);
                 return "--------------------" +
                     $"{GetSectionOrder(section):D2}.{loc}" +
                     "--------------------";
             }
-            catch
-            {
-                return "";
-            }
+            return section;
         }
         public static string GetEntryLocName(string section, string key, string lang = "")
         {
@@ -199,7 +199,7 @@ namespace AliceInCradleCheat
             }
             catch
             {
-                return "";
+                return key;
             }
         }
         public static string GetLocDesc(string section, string key, string lang = "")
