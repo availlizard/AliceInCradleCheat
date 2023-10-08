@@ -1,0 +1,12 @@
+obj/Debug/net46/.NETFramework,Version=v4.6.AssemblyAttributes.cs
+obj/Debug/net46/AliceInCradleCheat.AssemblyInfo.cs
+obj/Debug/net46/AliceInCradleCheat.AssemblyInfoInputs.cache
+obj/Debug/net46/AliceInCradleCheat.csproj.AssemblyReference.cache
+obj/Debug/net46/AliceInCradleCheat.GeneratedMSBuildEditorConfig.editorconfig
+lib/Assembly-CSharp.dll
+lib/better.dll
+lib/netstandard.dll
+lib/UnityEngine.CoreModule.dll
+lib/UnityEngine.dll
+lib/UnityEngine.UI.dll
+lib/unsafeAssem.dll

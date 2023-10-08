@@ -50,7 +50,7 @@ namespace AliceInCradleCheat
             if (set_dangerlevel_button.Check()) { SetDangerLevel(); }
             if (set_weather_button.Check()) { SetWeather(); }
             if (reset_MP_break.Check()) {
-                noel.GageBrk.reset();
+                noel.GaugeBrk.reset();
                 UIStatus.Instance.quitCrack();
             }
             if (reset_H_exp.Check()) { ResetHExp(); }
@@ -59,7 +59,7 @@ namespace AliceInCradleCheat
         }
         private static void SetMoney()
         {
-            int diff_money = (int)(money_def.Value - CoinStorage.count);
+            int diff_money = (int)(money_def.Value - CoinStorage.getCount());
             if (diff_money >= 0)
             {
                 CoinStorage.addCount(diff_money);
@@ -86,11 +86,11 @@ namespace AliceInCradleCheat
                 // Reduce additional danger level first
                 if (new_dlevel >= dlevel)
                 {
-                    m2d.NightCon.addAdditionalDangerLevel(diff_level, false);
+                    nc.setAdditionalDangerLevelManual(diff_level);
                 }
                 else
                 {
-                    m2d.NightCon.addAdditionalDangerLevel(-dlevel_add, false);
+                    nc.setAdditionalDangerLevelManual(-dlevel_add);
                     Traverse.Create(nc).Field("dlevel").SetValue(new_dlevel);
                 }
             }
@@ -145,7 +145,7 @@ namespace AliceInCradleCheat
             noel.Ser.clear();
             noel.EpCon.newGame();
             noel.EggCon.clear();
-            noel.GageBrk.reset();
+            noel.GaugeBrk.reset();
             UIStatus.Instance.fineMpRatio(true, false);
             UIStatus.Instance.quitCrack();
             noel.recheck_emot = true;

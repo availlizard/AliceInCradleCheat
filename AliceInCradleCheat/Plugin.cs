@@ -2,7 +2,6 @@
 using BepInEx;
 using BepInEx.Configuration;
 using BepInEx.Logging;
-using m2d;
 
 namespace AliceInCradleCheat
 {
