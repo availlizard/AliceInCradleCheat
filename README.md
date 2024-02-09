@@ -19,7 +19,7 @@
 
 
 ## 功能
-1. 基本属性锁定。
+1. 基本属性锁定。 （現已分開）
 2. 伤害增幅。
 3. 无限跳跃，无限制快速旅行和仓库使用。
 4. 免疫环境伤害。
@@ -44,7 +44,7 @@ Download `AICCheat_BepInEx_Integrated.zip`, unpack and move its contents to root
 ### Usage
 Press `F1` in game to open the cheat menu, click areas outside the menu to close.
 ## Implemented Functions
-1. Lock HP and MP.
+1. Lock HP and MP. (Now separated)
 2. Damage modifier.
 3. Infinite jump, unlimited fast travel and storage access.
 4. Envrionment damage immunity.

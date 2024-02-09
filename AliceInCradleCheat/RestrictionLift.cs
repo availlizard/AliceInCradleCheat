@@ -2,6 +2,7 @@
 using HarmonyLib;
 using XX;
 using nel;
+using nel.gm;
 
 namespace AliceInCradleCheat
 {
@@ -49,8 +50,10 @@ namespace AliceInCradleCheat
         {
             if (!switch_def.Value) { return; }
             ButtonSkinWholeMapArea WmSkin = Traverse.Create(__instance).Field("WmSkin").GetValue<ButtonSkinWholeMapArea>();
-            if (IN.isRunO(0) || ! IN.kettei() || ! Traverse.Create(__instance).Field("fasttravel").GetValue<bool>() ||
-                WmSkin.FastTravelFocused == null)
+            if (IN.isRunO(0)
+                || !IN.kettei()
+                || !Traverse.Create(__instance).Field("fasttravel").GetValue<bool>()
+                || WmSkin.FastTravelFocused.Equals(null))
             {
                 return;
             }

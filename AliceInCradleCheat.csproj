@@ -1,10 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net46</TargetFramework>
     <AssemblyName>AliceInCradleCheat</AssemblyName>
     <Description>Cheat for AliceInCradle</Description>
-    <Version>0.22.0</Version>
+    <Version>0.24.2</Version>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
@@ -26,6 +26,9 @@
     </Reference>
     <Reference Include="better">
       <Private>False</Private>
+    </Reference>
+    <Reference Include="netstandard">
+      <Private>false</Private>
     </Reference>
     <Reference Include="UnityEngine">
       <Private>False</Private>

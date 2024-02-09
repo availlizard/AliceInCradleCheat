@@ -2,7 +2,6 @@
 using BepInEx.Configuration;
 using HarmonyLib;
 using nel;
-using m2d;
 using XX;
 
 namespace AliceInCradleCheat
@@ -48,7 +47,7 @@ namespace AliceInCradleCheat
                 new AcceptableValueList<string>(
                     LocNames.GetEntryLocName("", "option_SameGrade"), "1", "2", "3", "4", "5"));
         }
-        public static void ResetItemNames ()
+        public static void ResetItemNames()
         {
             ConfigDefinition con_def = new(section, "Grade");
             if (grade_def != null && AICCheat.config.ContainsKey(con_def))
@@ -74,10 +73,10 @@ namespace AliceInCradleCheat
                 }
             }
         }
-        
+
         public static string[] LoadItemGetNameArray()
         {
-            NameToKey = new() ;
+            NameToKey = new();
             KeyToName = new();
             if (NelItem.OData == null)
             {
@@ -99,7 +98,8 @@ namespace AliceInCradleCheat
                 try
                 {
                     tx = TX.getTX("_NelItem_name_" + key, true, true, null);
-                } catch
+                }
+                catch
                 {
                     tx = null;
                 }
@@ -147,7 +147,7 @@ namespace AliceInCradleCheat
             int grade;
             int new_grade = 5;
             bool retain_grade_flag;
-            string grade_set =grade_def.Value;
+            string grade_set = grade_def.Value;
             if (grade_set == LocNames.GetEntryLocName("", "option_SameGrade"))
             {
                 retain_grade_flag = true;
@@ -167,7 +167,7 @@ namespace AliceInCradleCheat
                     __instance.Pr.x, __instance.Pr.y, X.NIXP(-0.003f, -0.07f) * (float)CAim._XD(__instance.Pr.aim, 1),
                     X.NIXP(-0.01f, -0.04f), null, false);
                 nelItemDrop.discarded = true;
-                nelItemDrop.fineNoelJuice(M2DBase.Instance as NelM2DBase);
+                nelItemDrop.finePrActive(__instance.Pr); // Possibly not needed
             }
             return true;
         }

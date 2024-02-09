@@ -86,6 +86,7 @@ namespace AliceInCradleCheat
             new LocConfigSection("BasicStatus", new string[] {"", "基础属性"}, new string[] {
                 "LockSwitch", "", "锁定开关",
                 "HP", "", "HP",
+                "LockSwitch2", "", "锁定开关2",
                 "MP", "", "MP",
                 "ResetMPBreak", "", "修复MP碎裂",
             }),
